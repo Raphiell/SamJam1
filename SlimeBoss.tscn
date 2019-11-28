@@ -1,0 +1,72 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://SlimeBoss.gd" type="Script" id=1]
+[ext_resource path="res://art/slime.png" type="Texture" id=2]
+
+[sub_resource type="Animation" id=2]
+resource_name = "aggro"
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.55 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "idle"
+length = 6.0
+loop = true
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[node name="SlimeBoss" type="KinematicBody2D"]
+z_as_relative = false
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+knockback_force = 50
+knockback_duration = 5
+hitstun_duration = 10
+detection_radius = 200
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.913725 )
+position = Vector2( -2.5, 0 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 2 )
+flip_h = true
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( 0, 5 )
+polygon = PoolVector2Array( -34.1258, 6.9616, -14.3755, 23.7358, 4.96896, 27.5236, 28.2364, 12.9137, 28.7775, -6.70127, 15.791, -31.3215, -9.3703, -29.0218, -31.1497, -4.53685 )
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/aggro = SubResource( 2 )
+anims/idle = SubResource( 3 )
+
+[node name="hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="hitbox"]
+position = Vector2( 0, 5 )
+polygon = PoolVector2Array( -9.37032, -31.9261, -33.0436, -7.17059, -36.4255, 9.33308, -19.3807, 24.6193, 5.64532, 30.1656, 31.2125, 14.6088, 31.3478, -7.44114, 18.4965, -33.6847 )

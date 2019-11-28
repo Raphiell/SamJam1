@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://art/slime.png" type="Texture" id=1]
+[ext_resource path="res://art/skeleclops.png" type="Texture" id=2]
+[ext_resource path="res://art/slimeBossTileset.png" type="Texture" id=3]
+
+[node name="EnemyTileset" type="Node"]
+
+[node name="Slime" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+hframes = 2
+
+[node name="Skeleclops" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+vframes = 5
+hframes = 8
+
+[node name="SlimeBoss" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+hframes = 2

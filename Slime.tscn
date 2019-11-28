@@ -1,0 +1,98 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Slime.gd" type="Script" id=1]
+[ext_resource path="res://art/slime.png" type="Texture" id=2]
+[ext_resource path="res://art/Z.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 5, 4 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "aggro"
+length = 0.5
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "idle"
+length = 3.0
+loop = true
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 7, 7 )
+
+[sub_resource type="Curve" id=5]
+_data = [ Vector2( 0, 0.7222 ), 0.0, 0.278362, 0, 0, Vector2( 1, 0.2206 ), -3.04523, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=6]
+curve = SubResource( 5 )
+
+[sub_resource type="ParticlesMaterial" id=7]
+emission_shape = 2
+emission_box_extents = Vector3( 5, 5, 1 )
+flag_disable_z = true
+gravity = Vector3( 0, -10, 0 )
+initial_velocity = 3.0
+initial_velocity_random = 1.0
+angular_velocity = 3.0
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale_curve = SubResource( 6 )
+
+[node name="Slime" type="KinematicBody2D"]
+modulate = Color( 1, 1, 1, 0.85098 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+flip_h = true
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 2 )
+shape = SubResource( 1 )
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/aggro = SubResource( 2 )
+anims/idle = SubResource( 3 )
+
+[node name="hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource( 4 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+scale = Vector2( 0.5, 0.5 )
+amount = 3
+lifetime = 3.0
+process_material = SubResource( 7 )
+texture = ExtResource( 3 )

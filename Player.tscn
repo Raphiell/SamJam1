@@ -1,0 +1,348 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://Player.gd" type="Script" id=1]
+[ext_resource path="res://art/player.png" type="Texture" id=2]
+[ext_resource path="res://sound/sword_swing.wav" type="AudioStream" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 6, 3 )
+
+[sub_resource type="Animation" id=19]
+resource_name = "dead"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 48 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "idledown"
+loop = true
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 14, 15 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "idleleft"
+loop = true
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 0.999999 ),
+"update": 1,
+"values": [ 12, 13 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "idleright"
+loop = true
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "idleup"
+loop = true
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 3 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "pushdown"
+length = 2.0
+loop = true
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 28, 29, 30, 31 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "pushleft"
+length = 2.0
+loop = true
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 39, 38, 37, 36 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "pushright"
+length = 2.0
+loop = true
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 24, 25, 26, 27 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "pushup"
+length = 2.0
+loop = true
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 40, 41, 42, 43 ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "swingdown"
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 32, 33, 34 ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "swingleft"
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 57, 58, 59 ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "swingright"
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 46, 47, 56 ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "swingup"
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 35, 44, 45 ]
+}
+
+[sub_resource type="Animation" id=14]
+length = 2.0
+loop = true
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 20, 21, 22, 23 ]
+}
+
+[sub_resource type="Animation" id=15]
+length = 2.0
+loop = true
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 16, 17, 18, 19 ]
+}
+
+[sub_resource type="Animation" id=16]
+length = 2.0
+loop = true
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6, 7 ]
+}
+
+[sub_resource type="Animation" id=17]
+length = 2.0
+loop = true
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 8, 9, 10, 11 ]
+}
+
+[sub_resource type="RectangleShape2D" id=18]
+extents = Vector2( 7, 8 )
+
+[node name="Player" type="KinematicBody2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 4 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+vframes = 5
+hframes = 12
+frame = 48
+
+[node name="anim" type="AnimationPlayer" parent="."]
+playback_speed = 3.0
+anims/dead = SubResource( 19 )
+anims/idledown = SubResource( 2 )
+anims/idleleft = SubResource( 3 )
+anims/idleright = SubResource( 4 )
+anims/idleup = SubResource( 5 )
+anims/pushdown = SubResource( 6 )
+anims/pushleft = SubResource( 7 )
+anims/pushright = SubResource( 8 )
+anims/pushup = SubResource( 9 )
+anims/swingdown = SubResource( 10 )
+anims/swingleft = SubResource( 11 )
+anims/swingright = SubResource( 12 )
+anims/swingup = SubResource( 13 )
+anims/walkdown = SubResource( 14 )
+anims/walkleft = SubResource( 15 )
+anims/walkright = SubResource( 16 )
+anims/walkup = SubResource( 17 )
+
+[node name="hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource( 18 )
+
+[node name="SwordSwing" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+volume_db = -10.0
+
+[node name="TimerToFadeout" type="Timer" parent="."]
+one_shot = true
+[connection signal="timeout" from="TimerToFadeout" to="." method="_on_TimerToFadeout_timeout"]
